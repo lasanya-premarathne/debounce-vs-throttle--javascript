@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Debounce vs Throttle Demo</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<h1>Debounce vs Throttle in Real Life</h1>
+
+		<!-- Debounce Section -->
+		<h3>Debounce Example: Live Search</h3>
+		<input type="text" id="search" placeholder="Start typing..." />
+		<div class="result-box">
+			<p><strong>Immediate (no debounce):</strong></p>
+			<p id="immediate-result"><em>Waiting for input...</em></p>
+
+			<p><strong>Debounced (500ms delay):</strong></p>
+			<p id="debounced-result"><em>Waiting for input...</em></p>
+		</div>
+
+		<!-- Throttle Section -->
+		<h3>Throttle Example: Scroll Tracking</h3>
+		<div class="scroll-box" id="scroll-box">
+			<!-- Scrollable content is added by JS -->
+		</div>
+		<div class="result-box">
+			<p><strong>Raw Scroll (no throttle):</strong></p>
+			<p id="raw-scroll-output"><em>Scroll to see updates...</em></p>
+
+			<p><strong>Throttled Scroll (500ms interval):</strong></p>
+			<p id="scroll-output"><em>Scroll to see updates...</em></p>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
+

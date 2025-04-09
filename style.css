@@ -1,0 +1,47 @@
+body {
+	font-family: Arial, sans-serif;
+	padding: 2rem;
+	background: #f9f9f9;
+}
+
+h1,
+h3 {
+	margin-top: 2rem;
+}
+
+input {
+	padding: 0.5rem;
+	font-size: 1rem;
+	width: 100%;
+	max-width: 400px;
+	margin-bottom: 1rem;
+}
+
+.result-box {
+	background: #fff;
+	border: 1px solid #ccc;
+	padding: 1rem;
+	margin-top: 0.5rem;
+	max-width: 400px;
+}
+
+.scroll-box {
+	width: 100%;
+	max-width: 400px;
+	height: 200px;
+	overflow-y: scroll;
+	border: 2px solid #888;
+	background: #fff;
+	padding: 1rem;
+	margin-top: 1rem;
+}
+
+p {
+	margin: 0.5rem 0;
+}
+
+code {
+	background: #eee;
+	padding: 0.2rem 0.4rem;
+	border-radius: 4px;
+}
