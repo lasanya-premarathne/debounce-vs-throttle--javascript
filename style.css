@@ -1,47 +1,224 @@
-body {
-	font-family: Arial, sans-serif;
-	padding: 2rem;
-	background: #f9f9f9;
-}
-
-h1,
-h3 {
-	margin-top: 2rem;
-}
-
-input {
-	padding: 0.5rem;
-	font-size: 1rem;
-	width: 100%;
-	max-width: 400px;
-	margin-bottom: 1rem;
-}
-
-.result-box {
-	background: #fff;
-	border: 1px solid #ccc;
-	padding: 1rem;
-	margin-top: 0.5rem;
-	max-width: 400px;
-}
-
-.scroll-box {
-	width: 100%;
-	max-width: 400px;
-	height: 200px;
-	overflow-y: scroll;
-	border: 2px solid #888;
-	background: #fff;
-	padding: 1rem;
-	margin-top: 1rem;
-}
-
-p {
-	margin: 0.5rem 0;
-}
-
-code {
-	background: #eee;
-	padding: 0.2rem 0.4rem;
-	border-radius: 4px;
-}
+/* ==================== RESET & BASE ==================== */
+* {
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+  
+  body {
+    background-color: #121826;
+    color: #e2e8f0;
+    font-family: "Inter", system-ui, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  h1,
+  h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  h2 {
+    color: #60a5fa;
+  }
+  
+  .instruction {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #94a3b8;
+  }
+  
+  .caption {
+    text-align: center;
+    font-size: 14px;
+    color: #94a3b8;
+    margin-top: -10px;
+    margin-bottom: 20px;
+  }
+  
+  /* ==================== LAYOUT ==================== */
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 12px;
+    background-color: #1e293b;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+  
+  .left,
+  .right {
+    width: 50%;
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .left,
+    .right {
+      width: 100%;
+    }
+  }
+  
+  /* ==================== INPUT & OUTPUT ==================== */
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2d3748;
+    color: #e2e8f0;
+    font-size: 16px;
+  }
+  
+  input:focus {
+    outline: none;
+    border: 2px solid #60a5fa;
+    background-color: #374151;
+  }
+  
+  input:hover {
+    background-color: #374151;
+  }
+  
+  .output {
+    background-color: #2d3748;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #e2e8f0;
+  }
+  
+  #immediate-result,
+  #raw-scroll-output {
+    color: #f87171;
+  }
+  
+  #debounced-result,
+  #scroll-output {
+    color: #4ade80;
+  }
+  
+  #scroll-box {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #2d3748;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid transparent;
+  }
+  
+  #scroll-box:hover {
+    border-color: #60a5fa;
+  }
+  
+  #scroll-box p {
+    margin: 8px 0;
+    color: #e2e8f0;
+  }
+  
+  /* ==================== THEME TOGGLE ==================== */
+  #theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    background-color: #2d3748;
+    color: #60a5fa;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 14px;
+  }
+  
+  #theme-toggle:hover {
+    background-color: #374151;
+  }
+  
+  /* ==================== LIGHT THEME ==================== */
+  body.light {
+    background-color: #f8fafc;
+    color: #1e293b;
+  }
+  
+  body.light .container {
+    background-color: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+  
+  body.light input,
+  body.light #scroll-box,
+  body.light .output {
+    background-color: #f1f5f9;
+    color: #1e293b;
+  }
+  
+  body.light input:focus {
+    border-color: #3b82f6;
+  }
+  
+  body.light input:hover,
+  body.light #scroll-box:hover {
+    background-color: #e2e8f0;
+  }
+  
+  body.light #immediate-result,
+  body.light #raw-scroll-output {
+    color: #ef4444;
+  }
+  
+  body.light #debounced-result,
+  body.light #scroll-output {
+    color: #10b981;
+  }
+  
+  body.light h2 {
+    color: #3b82f6;
+  }
+  
+  body.light #scroll-box p {
+    color: #1e293b;
+  }
+  
+  body.light #theme-toggle {
+    background-color: #f1f5f9;
+    color: #3b82f6;
+  }
+  
+  body.light #theme-toggle:hover {
+    background-color: #e2e8f0;
+  }
+  
+  /* ==================== FOOTER ==================== */
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #94a3b8;
+    font-size: 14px;
+  }
+  
+  footer a {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  

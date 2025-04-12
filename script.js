@@ -1,3 +1,10 @@
+// ===============================
+// Debounce Example (Search Input)
+// ===============================
+const searchInput = document.getElementById('search');
+const debouncedResult = document.getElementById('debounced-result');
+const immediateResult = document.getElementById('immediate-result');
+
 // 🛠 Debounce Function
 function debounce(fn, delay) {
     let timeout;
@@ -9,28 +16,6 @@ function debounce(fn, delay) {
         }, delay);
     };
 }
-
-
-// 🛠 Throttle Function
-function throttle(fn, limit) {
-    let lastCall = 0;
-    return function (...args) {
-        const now = Date.now();
-        if (now - lastCall >= limit) {
-            lastCall = now;
-            console.log(`[THROTTLED] Function ran (every ${limit}ms max): "${args[0].target.scrollTop}"`);
-            fn.apply(this, args);
-        }
-    };
-}
-
-
-// ===============================
-// Debounce Example (Search Input)
-// ===============================
-const searchInput = document.getElementById('search');
-const debouncedResult = document.getElementById('debounced-result');
-const immediateResult = document.getElementById('immediate-result');
 
 const handleSearch = debounce((e) => {
     debouncedResult.textContent = `Debounced: "${e.target.value}"`;
@@ -55,6 +40,19 @@ const rawScrollOutput = document.getElementById('raw-scroll-output');
 
 scrollBox.innerHTML += Array(50).fill("<p>Scroll content...</p>").join('');
 
+// 🛠 Throttle Function
+function throttle(fn, limit) {
+    let lastCall = 0;
+    return function (...args) {
+        const now = Date.now();
+        if (now - lastCall >= limit) {
+            lastCall = now;
+            console.log(`[THROTTLED] Function ran (every ${limit}ms max): "${args[0].target.scrollTop}"`);
+            fn.apply(this, args);
+        }
+    };
+}
+
 // Without Throttle
 scrollBox.addEventListener('scroll', () => {
     rawScrollOutput.textContent = `Raw Scroll: ${scrollBox.scrollTop}px`;
@@ -67,3 +65,14 @@ const handleScroll = throttle(() => {
 }, 500);
 
 scrollBox.addEventListener('scroll', handleScroll);
+
+// ===============================
+// Theme Toggle Function
+// ===============================
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    themeToggle.textContent = document.body.classList.contains('light') ? '🌞 Toggle Theme' : '🌙 Toggle Theme';
+    themeToggle.setAttribute('title', document.body.classList.contains('light') ? 'Switch to dark mode' : 'Switch to light mode');
+});
