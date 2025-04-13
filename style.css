@@ -1,224 +1,230 @@
+/* ==================== VARIABLES ==================== */
+@import url('colors.css');
+
 /* ==================== RESET & BASE ==================== */
 * {
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-  }
-  
-  body {
-    background-color: #121826;
-    color: #e2e8f0;
-    font-family: "Inter", system-ui, sans-serif;
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-  }
-  
-  h1,
-  h2 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 10px;
-  }
-  h2 {
-    color: #60a5fa;
-  }
-  
-  .instruction {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #94a3b8;
-  }
-  
-  .caption {
-    text-align: center;
-    font-size: 14px;
-    color: #94a3b8;
-    margin-top: -10px;
-    margin-bottom: 20px;
-  }
-  
-  /* ==================== LAYOUT ==================== */
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    max-width: 1100px;
-    border-radius: 12px;
-    background-color: #1e293b;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-  }
-  
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Inter", system-ui, sans-serif;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+h1,
+h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+h2 {
+  color: var(--color-heading);
+}
+
+.instruction {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-muted);
+}
+
+.caption {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* ==================== LAYOUT ==================== */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 12px;
+  background-color: var(--color-container);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.left,
+.right {
+  width: 50%;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
   .left,
   .right {
-    width: 50%;
-    padding: 20px;
-  }
-  
-  @media (max-width: 768px) {
-    .left,
-    .right {
-      width: 100%;
-    }
-  }
-  
-  /* ==================== INPUT & OUTPUT ==================== */
-  input {
     width: 100%;
-    padding: 12px 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #2d3748;
-    color: #e2e8f0;
-    font-size: 16px;
   }
-  
-  input:focus {
-    outline: none;
-    border: 2px solid #60a5fa;
-    background-color: #374151;
-  }
-  
-  input:hover {
-    background-color: #374151;
-  }
-  
-  .output {
-    background-color: #2d3748;
-    padding: 12px;
-    border-radius: 8px;
-    margin-top: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #e2e8f0;
-  }
-  
-  #immediate-result,
-  #raw-scroll-output {
-    color: #f87171;
-  }
-  
-  #debounced-result,
-  #scroll-output {
-    color: #4ade80;
-  }
-  
-  #scroll-box {
-    height: 300px;
-    overflow-y: scroll;
-    background-color: #2d3748;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    border: 1px solid transparent;
-  }
-  
-  #scroll-box:hover {
-    border-color: #60a5fa;
-  }
-  
-  #scroll-box p {
-    margin: 8px 0;
-    color: #e2e8f0;
-  }
-  
-  /* ==================== THEME TOGGLE ==================== */
-  #theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 8px 12px;
-    background-color: #2d3748;
-    color: #60a5fa;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 100;
-    font-size: 14px;
-  }
-  
-  #theme-toggle:hover {
-    background-color: #374151;
-  }
-  
-  /* ==================== LIGHT THEME ==================== */
-  body.light {
-    background-color: #f8fafc;
-    color: #1e293b;
-  }
-  
-  body.light .container {
-    background-color: #ffffff;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  }
-  
-  body.light input,
-  body.light #scroll-box,
-  body.light .output {
-    background-color: #f1f5f9;
-    color: #1e293b;
-  }
-  
-  body.light input:focus {
-    border-color: #3b82f6;
-  }
-  
-  body.light input:hover,
-  body.light #scroll-box:hover {
-    background-color: #e2e8f0;
-  }
-  
-  body.light #immediate-result,
-  body.light #raw-scroll-output {
-    color: #ef4444;
-  }
-  
-  body.light #debounced-result,
-  body.light #scroll-output {
-    color: #10b981;
-  }
-  
-  body.light h2 {
-    color: #3b82f6;
-  }
-  
-  body.light #scroll-box p {
-    color: #1e293b;
-  }
-  
-  body.light #theme-toggle {
-    background-color: #f1f5f9;
-    color: #3b82f6;
-  }
-  
-  body.light #theme-toggle:hover {
-    background-color: #e2e8f0;
-  }
-  
-  /* ==================== FOOTER ==================== */
-  footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #94a3b8;
-    font-size: 14px;
-  }
-  
-  footer a {
-    color: #60a5fa;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-  }
-  
+}
+
+/* ==================== INPUT & OUTPUT ==================== */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-input);
+  color: var(--color-text);
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid var(--color-heading);
+  background-color: var(--color-input-focus);
+}
+
+input:hover {
+  background-color: var(--color-input-focus);
+}
+
+.output {
+  background-color: var(--color-input);
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+#immediate-result,
+#raw-scroll-output {
+  color: var(--color-error);
+}
+
+#debounced-result,
+#scroll-output {
+  color: var(--color-success);
+}
+
+#scroll-box {
+  height: 300px;
+  overflow-y: scroll;
+  background-color: var(--color-input);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid transparent;
+}
+
+#scroll-box:hover {
+  border-color: var(--color-heading);
+}
+
+#scroll-box p {
+  margin: 8px 0;
+  color: var(--color-text);
+}
+
+#scroll-box:active {
+  border: 2px solid var(--color-active);
+}
+
+/* ==================== THEME TOGGLE ==================== */
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 12px;
+  background-color: var(--color-input);
+  color: var(--color-heading);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 100;
+  font-size: 14px;
+}
+
+#theme-toggle:hover {
+  background-color: var(--color-input-focus);
+}
+
+/* ==================== LIGHT THEME ==================== */
+body.light {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+body.light .container {
+  background-color: var(--color-container-light);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.light input,
+body.light #scroll-box,
+body.light .output {
+  background-color: var(--color-input-light);
+  color: var(--color-text-light);
+}
+
+body.light input:focus {
+  border-color: var(--color-heading-light);
+}
+
+body.light input:hover,
+body.light #scroll-box:hover {
+  background-color: var(--color-input-hover-light);
+}
+
+body.light #immediate-result,
+body.light #raw-scroll-output {
+  color: var(--color-error-light);
+}
+
+body.light #debounced-result,
+body.light #scroll-output {
+  color: var(--color-success-light);
+}
+
+body.light h2 {
+  color: var(--color-heading-light);
+}
+
+body.light #scroll-box p {
+  color: var(--color-text-light);
+}
+
+body.light #theme-toggle {
+  background-color: var(--color-input-light);
+  color: var(--color-heading-light);
+}
+
+body.light #theme-toggle:hover {
+  background-color: var(--color-input-hover-light);
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+footer a {
+  color: var(--color-heading);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
